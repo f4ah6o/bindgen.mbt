@@ -1,8 +1,10 @@
 ///|
 /// Calculate the n-th Fibonacci number.
 ///
-/// ```mbt test
-/// inspect(fib(10), content="89")
+/// ```mbt check
+/// test {
+///   inspect(fib(10), content="89")
+/// }
 /// ```
 pub fn fib(n : Int) -> Int64 {
   loop (n, 0L, 1L) {

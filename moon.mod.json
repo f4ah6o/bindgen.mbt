@@ -1,14 +1,19 @@
 {
-  "name": "mizchi/lib",
+  "name": "f4ah6o/bindgen",
   "version": "0.1.0",
   "deps": {
-    "moonbitlang/async": "0.16.2"
+    "moonbitlang/x": "0.4.38"
   },
-  "source": "src",
-  "preferred-target": "js",
   "readme": "README.mbt.md",
-  "repository": "",
+  "repository": "https://github.com/peng1999/bindgen.mbt",
   "license": "Apache-2.0",
-  "keywords": [],
-  "description": ""
+  "keywords": [
+    "ffi",
+    "bindgen",
+    "c",
+    "codegen"
+  ],
+  "description": "Automatically generate MoonBit FFI bindings from C/C++ headers",
+  "source": "src",
+  "preferred-target": "native"
 }
