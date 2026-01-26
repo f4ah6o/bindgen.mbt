@@ -36,3 +36,11 @@ clean:
 
 # Pre-release check
 release-check: fmt info check test
+
+# Build native (with libclang workaround)
+build-native:
+    ./build-native.sh
+
+# Test native (with libclang workaround)
+test-native:
+    ./build-native-test.sh
