@@ -1,0 +1,24 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "f4ah6o/bindgen/codegen"
+
+import {
+  "f4ah6o/bindgen/ir",
+}
+
+// Values
+pub fn generate(@ir.BindgenContext, CodegenConfig) -> String
+
+// Errors
+
+// Types and methods
+pub(all) struct CodegenConfig {
+  type_prefix : String
+  generate_accessors : Bool
+  use_opaque_pointers : Bool
+}
+pub fn CodegenConfig::default() -> Self
+
+// Type aliases
+
+// Traits
+

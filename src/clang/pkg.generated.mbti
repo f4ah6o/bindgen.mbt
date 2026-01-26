@@ -1,0 +1,447 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "f4ah6o/bindgen/clang"
+
+// Values
+pub const CXChildVisit_Break : UInt = 0
+
+pub const CXChildVisit_Continue : UInt = 1
+
+pub const CXChildVisit_Recurse : UInt = 2
+
+pub const CXCursor_CXXAccessSpecifier : Int = 39
+
+pub const CXCursor_CXXBaseSpecifier : Int = 44
+
+pub const CXCursor_CXXMethod : Int = 21
+
+pub const CXCursor_ClassDecl : Int = 4
+
+pub const CXCursor_ClassTemplate : Int = 31
+
+pub const CXCursor_ClassTemplatePartialSpecialization : Int = 32
+
+pub const CXCursor_Constructor : Int = 24
+
+pub const CXCursor_ConversionFunction : Int = 26
+
+pub const CXCursor_Destructor : Int = 25
+
+pub const CXCursor_EnumConstantDecl : Int = 7
+
+pub const CXCursor_EnumDecl : Int = 5
+
+pub const CXCursor_FieldDecl : Int = 6
+
+pub const CXCursor_FunctionDecl : Int = 8
+
+pub const CXCursor_FunctionTemplate : Int = 30
+
+pub const CXCursor_InclusionDirective : Int = 503
+
+pub const CXCursor_MacroDefinition : Int = 501
+
+pub const CXCursor_MacroExpansion : Int = 502
+
+pub const CXCursor_Namespace : Int = 22
+
+pub const CXCursor_NamespaceAlias : Int = 33
+
+pub const CXCursor_NonTypeTemplateParameter : Int = 28
+
+pub const CXCursor_ParmDecl : Int = 10
+
+pub const CXCursor_StructDecl : Int = 2
+
+pub const CXCursor_TemplateTemplateParameter : Int = 29
+
+pub const CXCursor_TemplateTypeParameter : Int = 27
+
+pub const CXCursor_TypeAliasDecl : Int = 36
+
+pub const CXCursor_TypedefDecl : Int = 20
+
+pub const CXCursor_UnexposedDecl : Int = 1
+
+pub const CXCursor_UnionDecl : Int = 3
+
+pub const CXCursor_UsingDeclaration : Int = 35
+
+pub const CXCursor_UsingDirective : Int = 34
+
+pub const CXCursor_VarDecl : Int = 9
+
+pub const CXDiagnostic_DisplayCategoryName : UInt = 0x20
+
+pub const CXDiagnostic_DisplayOption : UInt = 0x04
+
+pub const CXDiagnostic_DisplaySourceLocation : UInt = 0x01
+
+pub const CXDiagnostic_DisplaySourceRanges : UInt = 0x02
+
+pub const CXTranslationUnit_DetailedPreprocessingRecord : UInt = 0x01
+
+pub const CXTranslationUnit_KeepGoing : UInt = 0x200
+
+pub const CXTranslationUnit_SkipFunctionBodies : UInt = 0x40
+
+pub const CXType_BlockPointer : Int = 102
+
+pub const CXType_Bool : Int = 3
+
+pub const CXType_Char16 : Int = 6
+
+pub const CXType_Char32 : Int = 7
+
+pub const CXType_Char_S : Int = 13
+
+pub const CXType_Char_U : Int = 4
+
+pub const CXType_ConstantArray : Int = 112
+
+pub const CXType_DependentSizedArray : Int = 116
+
+pub const CXType_Double : Int = 22
+
+pub const CXType_Elaborated : Int = 119
+
+pub const CXType_Enum : Int = 106
+
+pub const CXType_Float : Int = 21
+
+pub const CXType_FunctionNoProto : Int = 110
+
+pub const CXType_FunctionProto : Int = 111
+
+pub const CXType_IncompleteArray : Int = 114
+
+pub const CXType_Int : Int = 17
+
+pub const CXType_Int128 : Int = 20
+
+pub const CXType_Invalid : Int = 0
+
+pub const CXType_LValueReference : Int = 103
+
+pub const CXType_Long : Int = 18
+
+pub const CXType_LongDouble : Int = 23
+
+pub const CXType_LongLong : Int = 19
+
+pub const CXType_MemberPointer : Int = 117
+
+pub const CXType_NullPtr : Int = 24
+
+pub const CXType_Pointer : Int = 101
+
+pub const CXType_RValueReference : Int = 104
+
+pub const CXType_Record : Int = 105
+
+pub const CXType_SChar : Int = 14
+
+pub const CXType_Short : Int = 16
+
+pub const CXType_Typedef : Int = 107
+
+pub const CXType_UChar : Int = 5
+
+pub const CXType_UInt : Int = 9
+
+pub const CXType_UInt128 : Int = 12
+
+pub const CXType_ULong : Int = 10
+
+pub const CXType_ULongLong : Int = 11
+
+pub const CXType_UShort : Int = 8
+
+pub const CXType_Unexposed : Int = 1
+
+pub const CXType_VariableArray : Int = 115
+
+pub const CXType_Vector : Int = 113
+
+pub const CXType_Void : Int = 2
+
+pub const CXType_WChar : Int = 15
+
+pub fn cxstring_to_string(CXString) -> String
+
+pub fn string_to_cstring(String) -> Bytes
+
+// Errors
+
+// Types and methods
+pub(all) struct CXCursor {
+  kind : Int
+  xdata : Int
+  data0 : Int64
+  data1 : Int64
+  data2 : Int64
+}
+pub impl Eq for CXCursor
+pub impl Show for CXCursor
+pub impl ToJson for CXCursor
+
+pub struct CXCursorVisitor((CXCursor, CXCursor) -> UInt)
+#deprecated
+pub fn CXCursorVisitor::inner(Self) -> (CXCursor, CXCursor) -> UInt
+
+pub struct CXDiagnostic(Int64)
+#deprecated
+pub fn CXDiagnostic::inner(Self) -> Int64
+
+pub struct CXIndex(Int64)
+#deprecated
+pub fn CXIndex::inner(Self) -> Int64
+
+pub(all) struct CXSourceLocation {
+  ptr_data0 : Int64
+  ptr_data1 : Int64
+  int_data : UInt
+}
+pub impl Eq for CXSourceLocation
+pub impl Show for CXSourceLocation
+pub impl ToJson for CXSourceLocation
+
+pub(all) struct CXSourceRange {
+  ptr_data0 : Int64
+  ptr_data1 : Int64
+  begin_int_data : UInt
+  end_int_data : UInt
+}
+pub impl Eq for CXSourceRange
+pub impl Show for CXSourceRange
+pub impl ToJson for CXSourceRange
+
+pub struct CXString(Int64)
+#deprecated
+pub fn CXString::inner(Self) -> Int64
+
+pub struct CXTranslationUnit(Int64)
+#deprecated
+pub fn CXTranslationUnit::inner(Self) -> Int64
+
+pub(all) struct CXType {
+  kind : Int
+  data0 : Int64
+  data1 : Int64
+}
+pub impl Eq for CXType
+pub impl Show for CXType
+pub impl ToJson for CXType
+
+pub(all) struct Cursor {
+  raw : CXCursor
+}
+pub fn Cursor::argument(Self, Int) -> Self
+pub fn Cursor::arguments(Self) -> Array[Self]
+pub fn Cursor::bitfield_width(Self) -> Int
+pub fn Cursor::brief_comment(Self) -> String
+pub fn Cursor::canonical(Self) -> Self
+pub fn Cursor::children(Self) -> Array[Self]
+pub fn Cursor::cursor_type(Self) -> Type
+pub fn Cursor::definition(Self) -> Self
+pub fn Cursor::display_name(Self) -> String
+pub fn Cursor::enum_constant_unsigned_value(Self) -> UInt64
+pub fn Cursor::enum_constant_value(Self) -> Int64
+pub fn Cursor::enum_integer_type(Self) -> Type
+pub fn Cursor::equals(Self, Self) -> Bool
+pub fn Cursor::extent(Self) -> SourceRange
+pub fn Cursor::from_raw(CXCursor) -> Self
+pub fn Cursor::hash_value(Self) -> UInt
+pub fn Cursor::is_anonymous(Self) -> Bool
+pub fn Cursor::is_anonymous_record_decl(Self) -> Bool
+pub fn Cursor::is_definition(Self) -> Bool
+pub fn Cursor::is_null(Self) -> Bool
+pub fn Cursor::kind(Self) -> CursorKind
+pub fn Cursor::lexical_parent(Self) -> Self
+pub fn Cursor::location(Self) -> SourceLocation
+pub fn Cursor::num_arguments(Self) -> Int
+pub fn Cursor::raw_comment(Self) -> String
+pub fn Cursor::result_type(Self) -> Type
+pub fn Cursor::semantic_parent(Self) -> Self
+pub fn Cursor::spelling(Self) -> String
+pub fn Cursor::to_raw(Self) -> CXCursor
+pub fn Cursor::typedef_underlying_type(Self) -> Type
+pub fn Cursor::visit_children(Self, (Self, Self) -> VisitResult) -> Bool
+
+pub(all) enum CursorKind {
+  UnexposedDecl
+  StructDecl
+  UnionDecl
+  ClassDecl
+  EnumDecl
+  FieldDecl
+  EnumConstantDecl
+  FunctionDecl
+  VarDecl
+  ParmDecl
+  TypedefDecl
+  CXXMethod
+  Namespace
+  Constructor
+  Destructor
+  ConversionFunction
+  TemplateTypeParameter
+  NonTypeTemplateParameter
+  TemplateTemplateParameter
+  FunctionTemplate
+  ClassTemplate
+  ClassTemplatePartialSpecialization
+  NamespaceAlias
+  UsingDirective
+  UsingDeclaration
+  TypeAliasDecl
+  CXXBaseSpecifier
+  CXXAccessSpecifier
+  MacroDefinition
+  MacroExpansion
+  InclusionDirective
+  Other(Int)
+}
+pub fn CursorKind::from_raw(Int) -> Self
+pub fn CursorKind::to_raw(Self) -> Int
+pub impl Eq for CursorKind
+pub impl Show for CursorKind
+pub impl ToJson for CursorKind
+
+pub(all) struct Diagnostic {
+  raw : CXDiagnostic
+}
+pub fn Diagnostic::dispose(Self) -> Unit
+pub fn Diagnostic::format(Self) -> String
+
+pub(all) struct Index {
+  raw : CXIndex
+}
+pub fn Index::dispose(Self) -> Unit
+pub fn Index::new(exclude_pch? : Bool, display_diagnostics? : Bool) -> Self
+pub fn Index::parse_file(Self, String, args? : Array[String], options? : UInt) -> TranslationUnit?
+
+pub(all) struct PresumedLocation {
+  filename : String
+  line : UInt
+  column : UInt
+}
+pub impl Eq for PresumedLocation
+pub impl Show for PresumedLocation
+pub impl ToJson for PresumedLocation
+
+pub(all) struct SourceLocation {
+  raw : CXSourceLocation
+}
+pub fn SourceLocation::from_raw(CXSourceLocation) -> Self
+pub fn SourceLocation::is_in_system_header(Self) -> Bool
+pub fn SourceLocation::presumed_location(Self) -> PresumedLocation
+
+pub(all) struct SourceRange {
+  raw : CXSourceRange
+}
+
+pub(all) struct TranslationUnit {
+  raw : CXTranslationUnit
+  index : Index
+}
+pub fn TranslationUnit::cursor(Self) -> Cursor
+pub fn TranslationUnit::diagnostic(Self, UInt) -> Diagnostic
+pub fn TranslationUnit::diagnostics(Self) -> Array[Diagnostic]
+pub fn TranslationUnit::dispose(Self) -> Unit
+pub fn TranslationUnit::num_diagnostics(Self) -> UInt
+
+pub(all) struct Type {
+  raw : CXType
+}
+pub fn Type::align_of(Self) -> Int64
+pub fn Type::arg_type(Self, Int) -> Self
+pub fn Type::arg_types(Self) -> Array[Self]
+pub fn Type::array_element_type(Self) -> Self
+pub fn Type::array_size(Self) -> Int64
+pub fn Type::canonical(Self) -> Self
+pub fn Type::declaration(Self) -> Cursor
+pub fn Type::equals(Self, Self) -> Bool
+pub fn Type::from_raw(CXType) -> Self
+pub fn Type::is_const_qualified(Self) -> Bool
+pub fn Type::is_valid(Self) -> Bool
+pub fn Type::is_variadic(Self) -> Bool
+pub fn Type::is_volatile_qualified(Self) -> Bool
+pub fn Type::kind(Self) -> TypeKind
+pub fn Type::named_type(Self) -> Self
+pub fn Type::num_arg_types(Self) -> Int
+pub fn Type::num_elements(Self) -> Int64
+pub fn Type::offset_of(Self, String) -> Int64
+pub fn Type::pointee_type(Self) -> Self
+pub fn Type::result_type(Self) -> Self
+pub fn Type::size_of(Self) -> Int64
+pub fn Type::spelling(Self) -> String
+pub fn Type::to_raw(Self) -> CXType
+pub fn Type::typedef_name(Self) -> String
+
+pub(all) enum TypeKind {
+  Invalid
+  Unexposed
+  Void
+  Bool
+  Char_U
+  UChar
+  Char16
+  Char32
+  UShort
+  UInt
+  ULong
+  ULongLong
+  UInt128
+  Char_S
+  SChar
+  WChar
+  Short
+  Int
+  Long
+  LongLong
+  Int128
+  Float
+  Double
+  LongDouble
+  NullPtr
+  Pointer
+  BlockPointer
+  LValueReference
+  RValueReference
+  Record
+  Enum
+  Typedef
+  FunctionNoProto
+  FunctionProto
+  ConstantArray
+  Vector
+  IncompleteArray
+  VariableArray
+  DependentSizedArray
+  MemberPointer
+  Elaborated
+  Other(Int)
+}
+pub fn TypeKind::from_raw(Int) -> Self
+pub fn TypeKind::is_floating(Self) -> Bool
+pub fn TypeKind::is_integer(Self) -> Bool
+pub fn TypeKind::is_signed(Self) -> Bool
+pub fn TypeKind::is_unsigned(Self) -> Bool
+pub fn TypeKind::to_raw(Self) -> Int
+pub impl Eq for TypeKind
+pub impl Show for TypeKind
+pub impl ToJson for TypeKind
+
+pub(all) enum VisitResult {
+  Break
+  Continue
+  Recurse
+}
+pub fn VisitResult::to_raw(Self) -> UInt
+pub impl Eq for VisitResult
+pub impl Show for VisitResult
+
+// Type aliases
+
+// Traits
+

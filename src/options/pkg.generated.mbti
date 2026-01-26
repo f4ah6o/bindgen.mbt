@@ -1,0 +1,27 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "f4ah6o/bindgen/options"
+
+// Values
+
+// Errors
+
+// Types and methods
+pub(all) struct BindgenOptions {
+  input_header : String
+  output : String?
+  include_paths : Array[String]
+  clang_args : Array[String]
+  json_output : Bool
+  derive_show : Bool
+  derive_eq : Bool
+}
+pub fn BindgenOptions::new(String) -> Self
+pub fn BindgenOptions::with_clang_arg(Self, String) -> Self
+pub fn BindgenOptions::with_include_path(Self, String) -> Self
+pub fn BindgenOptions::with_json_output(Self, Bool) -> Self
+pub fn BindgenOptions::with_output(Self, String) -> Self
+
+// Type aliases
+
+// Traits
+

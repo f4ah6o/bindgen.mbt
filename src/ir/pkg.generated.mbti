@@ -1,0 +1,269 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "f4ah6o/bindgen/ir"
+
+// Values
+
+// Errors
+
+// Types and methods
+pub(all) struct BindgenContext {
+  items : Map[UInt64, Item]
+  types : Map[UInt64, IrType]
+  root_module : ItemId
+  mut next_item_id : UInt64
+  mut next_type_id : UInt64
+}
+pub fn BindgenContext::add_item(Self, Item) -> Unit
+pub fn BindgenContext::add_type(Self, TypeId, IrType) -> Unit
+pub fn BindgenContext::get_item(Self, ItemId) -> Item?
+pub fn BindgenContext::get_type(Self, TypeId) -> IrType?
+pub fn BindgenContext::item_count(Self) -> Int
+pub fn BindgenContext::iter_items(Self, (Item) -> Unit) -> Unit
+pub fn BindgenContext::iter_types(Self, (TypeId, IrType) -> Unit) -> Unit
+pub fn BindgenContext::new() -> Self
+pub fn BindgenContext::next_item_id(Self) -> ItemId
+pub fn BindgenContext::next_type_id(Self) -> TypeId
+pub fn BindgenContext::root(Self) -> Item?
+pub fn BindgenContext::type_count(Self) -> Int
+
+pub(all) struct CompInfo {
+  kind : CompKind
+  fields : Array[Field]
+  is_forward_decl : Bool
+  is_packed : Bool
+}
+pub fn CompInfo::is_struct(Self) -> Bool
+pub fn CompInfo::is_union(Self) -> Bool
+pub fn CompInfo::new(CompKind, fields? : Array[Field], is_forward_decl? : Bool, is_packed? : Bool) -> Self
+
+pub(all) enum CompKind {
+  Struct
+  Union
+}
+pub impl Eq for CompKind
+pub impl Show for CompKind
+
+pub(all) enum ConstValue {
+  Int(Int64)
+  UInt(UInt64)
+  Float(Double)
+  String(String)
+}
+pub impl Eq for ConstValue
+pub impl Show for ConstValue
+
+pub(all) struct EnumInfo {
+  repr : TypeId?
+  variants : Array[EnumVariant]
+}
+pub fn EnumInfo::new(Array[EnumVariant], repr? : TypeId?) -> Self
+
+pub(all) struct EnumVariant {
+  name : String
+  value : Int64
+  comment : String?
+}
+pub fn EnumVariant::new(String, Int64, comment? : String?) -> Self
+
+pub(all) struct Field {
+  name : String
+  type_id : TypeId
+  bit_offset : Int64?
+  bit_width : Int?
+  is_anonymous : Bool
+}
+pub fn Field::is_bitfield(Self) -> Bool
+pub fn Field::new(String, TypeId, bit_offset? : Int64?, bit_width? : Int?, is_anonymous? : Bool) -> Self
+
+pub(all) enum FloatKind {
+  Float
+  Double
+  LongDouble
+  Float128
+}
+pub impl Eq for FloatKind
+pub impl Show for FloatKind
+
+pub(all) struct Function {
+  name : String
+  mangled_name : String?
+  signature : TypeId
+  kind : FunctionKind
+  is_variadic : Bool
+}
+pub fn Function::new(String, TypeId, kind? : FunctionKind, mangled_name? : String?, is_variadic? : Bool) -> Self
+
+pub(all) struct FunctionArg {
+  name : String
+  type_id : TypeId
+}
+pub fn FunctionArg::new(String, TypeId) -> Self
+
+pub(all) enum FunctionKind {
+  Function
+  StaticMethod
+  Method
+  Constructor
+  Destructor
+  Virtual
+  PureVirtual
+}
+pub impl Eq for FunctionKind
+pub impl Show for FunctionKind
+
+pub(all) struct FunctionSig {
+  return_type : TypeId
+  args : Array[FunctionArg]
+  is_variadic : Bool
+  abi : String?
+}
+pub fn FunctionSig::new(TypeId, Array[FunctionArg], is_variadic? : Bool, abi? : String?) -> Self
+
+pub(all) enum IntKind {
+  Bool
+  Char
+  SChar
+  UChar
+  Short
+  UShort
+  Int
+  UInt
+  Long
+  ULong
+  LongLong
+  ULongLong
+  Int128
+  UInt128
+  Custom(Int, Bool)
+}
+pub fn IntKind::bit_width(Self) -> Int
+pub fn IntKind::is_signed(Self) -> Bool
+pub impl Eq for IntKind
+pub impl Show for IntKind
+
+pub(all) struct IrType {
+  name : String?
+  kind : IrTypeKind
+  is_const : Bool
+  layout : Layout?
+}
+pub fn IrType::is_comp(Self) -> Bool
+pub fn IrType::is_enum(Self) -> Bool
+pub fn IrType::is_float(Self) -> Bool
+pub fn IrType::is_function(Self) -> Bool
+pub fn IrType::is_int(Self) -> Bool
+pub fn IrType::is_pointer(Self) -> Bool
+pub fn IrType::is_void(Self) -> Bool
+pub fn IrType::kind(Self) -> IrTypeKind
+pub fn IrType::new(IrTypeKind, name? : String?, is_const? : Bool, layout? : Layout?) -> Self
+
+pub(all) enum IrTypeKind {
+  Void
+  NullPtr
+  Int(IntKind)
+  Float(FloatKind)
+  Pointer(TypeId)
+  Array(TypeId, Int64?)
+  Function(FunctionSig)
+  Comp(CompInfo)
+  Enum(EnumInfo)
+  Alias(TypeId)
+  Opaque
+}
+
+pub(all) struct Item {
+  id : ItemId
+  kind : ItemKind
+  name : String?
+  comment : String?
+  location : SourceLocation?
+  parent : ItemId?
+}
+pub fn Item::id(Self) -> ItemId
+pub fn Item::is_function(Self) -> Bool
+pub fn Item::is_module(Self) -> Bool
+pub fn Item::is_type(Self) -> Bool
+pub fn Item::is_var(Self) -> Bool
+pub fn Item::kind(Self) -> ItemKind
+pub fn Item::name(Self) -> String?
+pub fn Item::new(ItemId, ItemKind, name? : String?, comment? : String?, location? : SourceLocation?, parent? : ItemId?) -> Self
+
+pub(all) struct ItemId(UInt64)
+#deprecated
+pub fn ItemId::inner(Self) -> UInt64
+pub fn ItemId::new(UInt64) -> Self
+pub fn ItemId::raw(Self) -> UInt64
+pub impl Compare for ItemId
+pub impl Eq for ItemId
+pub impl Hash for ItemId
+pub impl Show for ItemId
+pub impl ToJson for ItemId
+
+pub(all) enum ItemKind {
+  Module(Module)
+  Type(IrType)
+  Function(Function)
+  Var(Variable)
+}
+pub fn ItemKind::as_function(Self) -> Function?
+pub fn ItemKind::as_module(Self) -> Module?
+pub fn ItemKind::as_type(Self) -> IrType?
+pub fn ItemKind::as_var(Self) -> Variable?
+pub fn ItemKind::kind_name(Self) -> String
+
+pub(all) struct Layout {
+  size : Int64
+  align : Int64
+}
+pub fn Layout::align(Self) -> Int64
+pub fn Layout::for_int() -> Self
+pub fn Layout::for_long() -> Self
+pub fn Layout::for_pointer() -> Self
+pub fn Layout::is_zero_sized(Self) -> Bool
+pub fn Layout::new(Int64, Int64) -> Self
+pub fn Layout::size(Self) -> Int64
+pub impl Eq for Layout
+pub impl Show for Layout
+pub impl ToJson for Layout
+
+pub(all) struct Module {
+  name : String
+  children : Array[ItemId]
+}
+pub fn Module::add_child(Self, ItemId) -> Unit
+pub fn Module::is_root(Self) -> Bool
+pub fn Module::new(String, children? : Array[ItemId]) -> Self
+
+pub(all) struct SourceLocation {
+  file : String
+  line : UInt
+  column : UInt
+}
+pub fn SourceLocation::new(String, UInt, UInt) -> Self
+pub impl Eq for SourceLocation
+pub impl Show for SourceLocation
+pub impl ToJson for SourceLocation
+
+pub(all) struct TypeId(UInt64)
+#deprecated
+pub fn TypeId::inner(Self) -> UInt64
+pub fn TypeId::new(UInt64) -> Self
+pub fn TypeId::raw(Self) -> UInt64
+pub impl Compare for TypeId
+pub impl Eq for TypeId
+pub impl Hash for TypeId
+pub impl Show for TypeId
+pub impl ToJson for TypeId
+
+pub(all) struct Variable {
+  name : String
+  type_id : TypeId
+  value : ConstValue?
+  is_const : Bool
+}
+pub fn Variable::new(String, TypeId, value? : ConstValue?, is_const? : Bool) -> Self
+
+// Type aliases
+
+// Traits
+
