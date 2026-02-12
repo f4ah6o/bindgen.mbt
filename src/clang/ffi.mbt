@@ -419,6 +419,7 @@ pub const CXDiagnostic_DisplayCategoryName : UInt = 0x20
 /// Create a new CXIndex for parsing translation units.
 /// excludeDeclarationsFromPCH: if non-zero, exclude declarations from PCH
 /// displayDiagnostics: if non-zero, display diagnostics
+#borrow(exclude_declarations_from_pch, display_diagnostics)
 extern "C" fn libclang_createIndex(
   exclude_declarations_from_pch : Int,
   display_diagnostics : Int,
@@ -426,6 +427,7 @@ extern "C" fn libclang_createIndex(
 
 ///|
 /// Dispose of the given CXIndex.
+#borrow(index)
 extern "C" fn libclang_disposeIndex(index : CXIndex) = "clang_disposeIndex"
 
 // =============================================================================
@@ -435,6 +437,7 @@ extern "C" fn libclang_disposeIndex(index : CXIndex) = "clang_disposeIndex"
 ///|
 /// Parse a source file to create a translation unit.
 /// Returns null on failure.
+#borrow(index, source_filename, command_line_args, num_command_line_args, unsaved_files, num_unsaved_files, options)
 extern "C" fn libclang_parseTranslationUnit(
   index : CXIndex,
   source_filename : Bytes,
@@ -447,10 +450,12 @@ extern "C" fn libclang_parseTranslationUnit(
 
 ///|
 /// Dispose of the given translation unit.
+#borrow(tu)
 extern "C" fn libclang_disposeTranslationUnit(tu : CXTranslationUnit) = "clang_disposeTranslationUnit"
 
 ///|
 /// Get the cursor representing the translation unit.
+#borrow(tu)
 extern "C" fn libclang_getTranslationUnitCursor(
   tu : CXTranslationUnit,
 ) -> CXCursor = "clang_getTranslationUnitCursor"
@@ -461,70 +466,87 @@ extern "C" fn libclang_getTranslationUnitCursor(
 
 ///|
 /// Get the kind of the given cursor.
+#borrow(cursor)
 extern "C" fn libclang_getCursorKind(cursor : CXCursor) -> Int = "clang_getCursorKind"
 
 ///|
 /// Determine if the cursor is null.
+#borrow(cursor)
 extern "C" fn libclang_Cursor_isNull(cursor : CXCursor) -> Int = "clang_Cursor_isNull"
 
 ///|
 /// Determine if two cursors are equal.
+#borrow(a, b)
 extern "C" fn libclang_equalCursors(a : CXCursor, b : CXCursor) -> UInt = "clang_equalCursors"
 
 ///|
 /// Get a hash value for a cursor.
+#borrow(cursor)
 extern "C" fn libclang_hashCursor(cursor : CXCursor) -> UInt = "clang_hashCursor"
 
 ///|
 /// Get the spelling of the cursor (its name).
+#borrow(cursor)
 extern "C" fn libclang_getCursorSpelling(cursor : CXCursor) -> CXString = "clang_getCursorSpelling"
 
 ///|
 /// Get the display name of the cursor.
+#borrow(cursor)
 extern "C" fn libclang_getCursorDisplayName(cursor : CXCursor) -> CXString = "clang_getCursorDisplayName"
 
 ///|
 /// Get the type of the cursor.
+#borrow(cursor)
 extern "C" fn libclang_getCursorType(cursor : CXCursor) -> CXType = "clang_getCursorType"
 
 ///|
 /// Get the result type of a function or method cursor.
+#borrow(cursor)
 extern "C" fn libclang_getCursorResultType(cursor : CXCursor) -> CXType = "clang_getCursorResultType"
 
 ///|
 /// Get the semantic parent of a cursor.
+#borrow(cursor)
 extern "C" fn libclang_getCursorSemanticParent(cursor : CXCursor) -> CXCursor = "clang_getCursorSemanticParent"
 
 ///|
 /// Get the lexical parent of a cursor.
+#borrow(cursor)
 extern "C" fn libclang_getCursorLexicalParent(cursor : CXCursor) -> CXCursor = "clang_getCursorLexicalParent"
 
 ///|
 /// Get the location of the cursor.
+#borrow(cursor)
 extern "C" fn libclang_getCursorLocation(cursor : CXCursor) -> CXSourceLocation = "clang_getCursorLocation"
 
 ///|
 /// Get the extent (source range) of the cursor.
+#borrow(cursor)
 extern "C" fn libclang_getCursorExtent(cursor : CXCursor) -> CXSourceRange = "clang_getCursorExtent"
 
 ///|
 /// Get the canonical cursor for the given cursor.
+#borrow(cursor)
 extern "C" fn libclang_getCanonicalCursor(cursor : CXCursor) -> CXCursor = "clang_getCanonicalCursor"
 
 ///|
 /// Get the cursor that represents the definition of the entity.
+#borrow(cursor)
 extern "C" fn libclang_getCursorDefinition(cursor : CXCursor) -> CXCursor = "clang_getCursorDefinition"
 
 ///|
 /// Determine whether the cursor is a definition.
+#borrow(cursor)
 extern "C" fn libclang_isCursorDefinition(cursor : CXCursor) -> UInt = "clang_isCursorDefinition"
 
 ///|
 /// Get number of arguments for a function cursor.
+#borrow(cursor)
 extern "C" fn libclang_Cursor_getNumArguments(cursor : CXCursor) -> Int = "clang_Cursor_getNumArguments"
 
 ///|
 /// Get the argument cursor at the given index.
+#borrow(cursor, i)
 extern "C" fn libclang_Cursor_getArgument(
   cursor : CXCursor,
   i : UInt,
@@ -532,44 +554,53 @@ extern "C" fn libclang_Cursor_getArgument(
 
 ///|
 /// Get the comment associated with the cursor.
+#borrow(cursor)
 extern "C" fn libclang_Cursor_getRawCommentText(cursor : CXCursor) -> CXString = "clang_Cursor_getRawCommentText"
 
 ///|
 /// Get the brief comment associated with the cursor.
+#borrow(cursor)
 extern "C" fn libclang_Cursor_getBriefCommentText(
   cursor : CXCursor,
 ) -> CXString = "clang_Cursor_getBriefCommentText"
 
 ///|
 /// For enum constant declarations, get the value.
+#borrow(cursor)
 extern "C" fn libclang_getEnumConstantDeclValue(cursor : CXCursor) -> Int64 = "clang_getEnumConstantDeclValue"
 
 ///|
 /// For enum constant declarations, get the unsigned value.
+#borrow(cursor)
 extern "C" fn libclang_getEnumConstantDeclUnsignedValue(
   cursor : CXCursor,
 ) -> UInt64 = "clang_getEnumConstantDeclUnsignedValue"
 
 ///|
 /// Get the integer type of an enum declaration.
+#borrow(cursor)
 extern "C" fn libclang_getEnumDeclIntegerType(cursor : CXCursor) -> CXType = "clang_getEnumDeclIntegerType"
 
 ///|
 /// Get the bit width of a bit-field declaration.
+#borrow(cursor)
 extern "C" fn libclang_getFieldDeclBitWidth(cursor : CXCursor) -> Int = "clang_getFieldDeclBitWidth"
 
 ///|
 /// Get the underlying type of a typedef.
+#borrow(cursor)
 extern "C" fn libclang_getTypedefDeclUnderlyingType(
   cursor : CXCursor,
 ) -> CXType = "clang_getTypedefDeclUnderlyingType"
 
 ///|
 /// Determine whether the cursor represents an anonymous struct or union.
+#borrow(cursor)
 extern "C" fn libclang_Cursor_isAnonymous(cursor : CXCursor) -> UInt = "clang_Cursor_isAnonymous"
 
 ///|
 /// Determine whether the cursor represents an anonymous record (unnamed field).
+#borrow(cursor)
 extern "C" fn libclang_Cursor_isAnonymousRecordDecl(cursor : CXCursor) -> UInt = "clang_Cursor_isAnonymousRecordDecl"
 
 // =============================================================================
@@ -578,42 +609,52 @@ extern "C" fn libclang_Cursor_isAnonymousRecordDecl(cursor : CXCursor) -> UInt =
 
 ///|
 /// Get the spelling of a type.
+#borrow(ty)
 extern "C" fn libclang_getTypeSpelling(ty : CXType) -> CXString = "clang_getTypeSpelling"
 
 ///|
 /// Get the canonical type for a type.
+#borrow(ty)
 extern "C" fn libclang_getCanonicalType(ty : CXType) -> CXType = "clang_getCanonicalType"
 
 ///|
 /// Determine whether a type is const-qualified.
+#borrow(ty)
 extern "C" fn libclang_isConstQualifiedType(ty : CXType) -> UInt = "clang_isConstQualifiedType"
 
 ///|
 /// Determine whether a type is volatile-qualified.
+#borrow(ty)
 extern "C" fn libclang_isVolatileQualifiedType(ty : CXType) -> UInt = "clang_isVolatileQualifiedType"
 
 ///|
 /// Get the pointee type of a pointer type.
+#borrow(ty)
 extern "C" fn libclang_getPointeeType(ty : CXType) -> CXType = "clang_getPointeeType"
 
 ///|
 /// Get the type referred to by a typedef.
+#borrow(ty)
 extern "C" fn libclang_getTypedefName(ty : CXType) -> CXString = "clang_getTypedefName"
 
 ///|
 /// Get the declaration cursor for a type.
+#borrow(ty)
 extern "C" fn libclang_getTypeDeclaration(ty : CXType) -> CXCursor = "clang_getTypeDeclaration"
 
 ///|
 /// Get the size of a type in bytes.
+#borrow(ty)
 extern "C" fn libclang_Type_getSizeOf(ty : CXType) -> Int64 = "clang_Type_getSizeOf"
 
 ///|
 /// Get the alignment of a type in bytes.
+#borrow(ty)
 extern "C" fn libclang_Type_getAlignOf(ty : CXType) -> Int64 = "clang_Type_getAlignOf"
 
 ///|
 /// Get the offset of a field in bits.
+#borrow(ty, field_name)
 extern "C" fn libclang_Type_getOffsetOf(
   ty : CXType,
   field_name : Bytes,
@@ -621,38 +662,47 @@ extern "C" fn libclang_Type_getOffsetOf(
 
 ///|
 /// Get the element type of an array, complex, or vector type.
+#borrow(ty)
 extern "C" fn libclang_getArrayElementType(ty : CXType) -> CXType = "clang_getArrayElementType"
 
 ///|
 /// Get the number of elements in an array.
+#borrow(ty)
 extern "C" fn libclang_getArraySize(ty : CXType) -> Int64 = "clang_getArraySize"
 
 ///|
 /// Get the number of elements in a vector type.
+#borrow(ty)
 extern "C" fn libclang_getNumElements(ty : CXType) -> Int64 = "clang_getNumElements"
 
 ///|
 /// Get the return type of a function type.
+#borrow(ty)
 extern "C" fn libclang_getResultType(ty : CXType) -> CXType = "clang_getResultType"
 
 ///|
 /// Get the number of arguments for a function type.
+#borrow(ty)
 extern "C" fn libclang_getNumArgTypes(ty : CXType) -> Int = "clang_getNumArgTypes"
 
 ///|
 /// Get the argument type at the given index.
+#borrow(ty, i)
 extern "C" fn libclang_getArgType(ty : CXType, i : UInt) -> CXType = "clang_getArgType"
 
 ///|
 /// Determine if a function type is variadic.
+#borrow(ty)
 extern "C" fn libclang_isFunctionTypeVariadic(ty : CXType) -> UInt = "clang_isFunctionTypeVariadic"
 
 ///|
 /// Get the named type of an elaborated type.
+#borrow(ty)
 extern "C" fn libclang_Type_getNamedType(ty : CXType) -> CXType = "clang_Type_getNamedType"
 
 ///|
 /// Determine if two types are equal.
+#borrow(a, b)
 extern "C" fn libclang_equalTypes(a : CXType, b : CXType) -> UInt = "clang_equalTypes"
 
 // =============================================================================
@@ -661,10 +711,12 @@ extern "C" fn libclang_equalTypes(a : CXType, b : CXType) -> UInt = "clang_equal
 
 ///|
 /// Get the C string from a CXString.
+#borrow(string)
 extern "C" fn libclang_getCString(string : CXString) -> Int64 = "clang_getCString"
 
 ///|
 /// Dispose of a CXString.
+#borrow(string)
 extern "C" fn libclang_disposeString(string : CXString) = "clang_disposeString"
 
 // =============================================================================
@@ -673,6 +725,7 @@ extern "C" fn libclang_disposeString(string : CXString) = "clang_disposeString"
 
 ///|
 /// Get the file, line, column from a source location.
+#borrow(location, filename, line, column)
 extern "C" fn libclang_getPresumedLocation(
   location : CXSourceLocation,
   filename : FixedArray[CXString], // out parameter
@@ -682,6 +735,7 @@ extern "C" fn libclang_getPresumedLocation(
 
 ///|
 /// Determine if a source location is in a system header.
+#borrow(location)
 extern "C" fn libclang_Location_isInSystemHeader(
   location : CXSourceLocation,
 ) -> Int = "clang_Location_isInSystemHeader"
@@ -691,13 +745,9 @@ extern "C" fn libclang_Location_isInSystemHeader(
 // =============================================================================
 
 ///|
-/// Visitor callback type alias for documentation.
-/// The actual callback is handled through our wrapper mechanism.
-pub struct CXCursorVisitor((CXCursor, CXCursor) -> UInt)
-
-///|
 /// Visit the children of a cursor.
 /// This is wrapped with a MoonBit-friendly interface in cursor.mbt.
+#borrow(parent, visitor, client_data)
 extern "C" fn libclang_visitChildren(
   parent : CXCursor,
   visitor : (CXCursor, CXCursor) -> UInt,
@@ -710,10 +760,12 @@ extern "C" fn libclang_visitChildren(
 
 ///|
 /// Get the number of diagnostics for a translation unit.
+#borrow(tu)
 extern "C" fn libclang_getNumDiagnostics(tu : CXTranslationUnit) -> UInt = "clang_getNumDiagnostics"
 
 ///|
 /// Get a diagnostic at the given index.
+#borrow(tu, index)
 extern "C" fn libclang_getDiagnostic(
   tu : CXTranslationUnit,
   index : UInt,
@@ -721,10 +773,12 @@ extern "C" fn libclang_getDiagnostic(
 
 ///|
 /// Dispose of a diagnostic.
+#borrow(diag)
 extern "C" fn libclang_disposeDiagnostic(diag : CXDiagnostic) = "clang_disposeDiagnostic"
 
 ///|
 /// Format a diagnostic for display.
+#borrow(diag, options)
 extern "C" fn libclang_formatDiagnostic(
   diag : CXDiagnostic,
   options : UInt,

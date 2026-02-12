@@ -1,9 +1,7 @@
 import {
-  "f4ah6o/bindgen/clang",
   "f4ah6o/bindgen/ir",
   "f4ah6o/bindgen/parse",
   "f4ah6o/bindgen/codegen",
-  "f4ah6o/bindgen/options",
 }
 
 options(

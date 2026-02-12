@@ -41,7 +41,7 @@ pub(all) struct PresumedLocation {
 } derive(Eq, Show, ToJson)
 
 ///|
-impl Show for SourceLocation with output(self, logger) {
+pub impl Show for SourceLocation with output(self, logger) {
   let loc = self.presumed_location()
   logger.write_string(loc.filename)
   logger.write_string(":")
@@ -57,6 +57,6 @@ pub(all) struct SourceRange {
 }
 
 ///|
-impl Show for SourceRange with output(self, logger) {
+pub impl Show for SourceRange with output(_self, logger) {
   logger.write_string("SourceRange { ... }")
 }

@@ -1,1 +1,4 @@
-import { "f4ah6o/bindgen/ir" }
+import {
+  "f4ah6o/bindgen/ir",
+  "moonbitlang/core/encoding/utf8" @utf8,
+}

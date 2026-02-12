@@ -236,12 +236,12 @@ pub fn Cursor::equals(self : Cursor, other : Cursor) -> Bool {
 }
 
 ///|
-impl Eq for Cursor with equal(self, other) {
+pub impl Eq for Cursor with equal(self, other) {
   self.equals(other)
 }
 
 ///|
-impl Show for Cursor with output(self, logger) {
+pub impl Show for Cursor with output(self, logger) {
   let kind = self.kind()
   let spelling = self.spelling()
   logger.write_string("Cursor { kind: ")
@@ -252,12 +252,12 @@ impl Show for Cursor with output(self, logger) {
 }
 
 ///|
-impl Hash for Cursor with hash(self) {
+pub impl Hash for Cursor with hash(self) {
   self.hash_value().reinterpret_as_int()
 }
 
 ///|
-impl Hash for Cursor with hash_combine(self, hasher) {
+pub impl Hash for Cursor with hash_combine(self, hasher) {
   hasher.combine_int(self.hash_value().reinterpret_as_int())
 }
 

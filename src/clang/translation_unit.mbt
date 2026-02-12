@@ -75,6 +75,6 @@ pub fn Diagnostic::dispose(self : Diagnostic) -> Unit {
 }
 
 ///|
-impl Show for Diagnostic with output(self, logger) {
+pub impl Show for Diagnostic with output(self, logger) {
   logger.write_string(self.format())
 }

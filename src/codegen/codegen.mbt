@@ -52,8 +52,8 @@ pub fn generate(ctx : @ir.BindgenContext, config : CodegenConfig) -> String {
   }
 
   // Generate variable declarations (constants)
-  for var in variables {
-    generate_variable(ctx, config, builder, var)
+  for variable in variables {
+    generate_variable(ctx, config, builder, variable)
   }
   builder.to_string()
 }
@@ -324,13 +324,13 @@ fn generate_variable(
   ctx : @ir.BindgenContext,
   config : CodegenConfig,
   builder : StringBuilder,
-  var : @ir.Variable,
+  variable : @ir.Variable,
 ) -> Unit {
-  let var_name = config.type_prefix + to_moonbit_identifier(var.name)
-  let var_type = type_id_to_moonbit(ctx, var.type_id)
+  let var_name = config.type_prefix + to_moonbit_identifier(variable.name)
+  let var_type = type_id_to_moonbit(ctx, variable.type_id)
 
   // Generate as a constant if we have a value, otherwise as extern
-  match var.value {
+  match variable.value {
     Some(@ir.Int(v)) => {
       builder.write_string("///|\n")
       builder.write_string("pub let ")
@@ -482,13 +482,13 @@ fn to_moonbit_identifier(name : String) -> String {
   }
 
   // Ensure first character is lowercase
-  let bytes = name.to_bytes()
+  let bytes = @utf8.encode(name)
   if bytes.length() > 0 {
     let first = bytes[0]
     if first >= 65 && first <= 90 {
       // Uppercase A-Z, convert to lowercase
       let lower_first = Bytes::make(1, (first.to_int() + 32).to_byte())
-      let rest = if bytes.length() > 1 { name.substring(start=1) } else { "" }
+      let rest = if bytes.length() > 1 { (name[1:] catch { _ => "" }).to_string() } else { "" }
       return lower_first.to_unchecked_string() + rest
     }
   }
@@ -502,12 +502,12 @@ fn to_moonbit_enum_variant(name : String) -> String {
   if name.is_empty() {
     return "Unknown"
   }
-  let bytes = name.to_bytes()
+  let bytes = @utf8.encode(name)
   let first = bytes[0]
   if first >= 97 && first <= 122 {
     // Lowercase a-z, convert to uppercase
     let upper_first = Bytes::make(1, (first.to_int() - 32).to_byte())
-    let rest = if bytes.length() > 1 { name.substring(start=1) } else { "" }
+    let rest = if bytes.length() > 1 { (name[1:] catch { _ => "" }).to_string() } else { "" }
     return upper_first.to_unchecked_string() + rest
   }
 
@@ -522,7 +522,7 @@ fn to_moonbit_enum_variant(name : String) -> String {
 /// Escape a string for MoonBit string literal.
 fn escape_string(s : String) -> String {
   let builder = StringBuilder::new()
-  let bytes = s.to_bytes()
+  let bytes = @utf8.encode(s)
   for i = 0; i < bytes.length(); i = i + 1 {
     let b = bytes[i]
     match b {

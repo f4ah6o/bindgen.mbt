@@ -169,12 +169,12 @@ pub fn Type::is_valid(self : Type) -> Bool {
 }
 
 ///|
-impl Eq for Type with equal(self, other) {
+pub impl Eq for Type with equal(self, other) {
   self.equals(other)
 }
 
 ///|
-impl Show for Type with output(self, logger) {
+pub impl Show for Type with output(self, logger) {
   let kind = self.kind()
   let spelling = self.spelling()
   logger.write_string("Type { kind: ")

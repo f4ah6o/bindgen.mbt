@@ -3,6 +3,7 @@
 
 ///|
 /// Helper: copy bytes using C memcpy
+#borrow(dest, src, n)
 extern "C" fn native_memcpy_bytes(dest : Bytes, src : Bytes, n : Int) -> Int64 = "memcpy"
 
 ///|
@@ -36,6 +37,7 @@ pub fn cxstring_to_string(cxstring : CXString) -> String {
 extern "C" fn native_strlen(ptr : Int64) -> Int = "strlen"
 
 ///|
+#borrow(dest, src, n)
 extern "C" fn native_memcpy(dest : Bytes, src : Int64, n : Int) -> Int64 = "memcpy"
 
 ///|
