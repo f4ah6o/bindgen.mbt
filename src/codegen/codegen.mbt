@@ -488,7 +488,11 @@ fn to_moonbit_identifier(name : String) -> String {
     if first >= 65 && first <= 90 {
       // Uppercase A-Z, convert to lowercase
       let lower_first = Bytes::make(1, (first.to_int() + 32).to_byte())
-      let rest = if bytes.length() > 1 { (name[1:] catch { _ => "" }).to_string() } else { "" }
+      let rest = if bytes.length() > 1 {
+        (name[1:] catch { _ => "" }).to_string()
+      } else {
+        ""
+      }
       return lower_first.to_unchecked_string() + rest
     }
   }
@@ -507,7 +511,11 @@ fn to_moonbit_enum_variant(name : String) -> String {
   if first >= 97 && first <= 122 {
     // Lowercase a-z, convert to uppercase
     let upper_first = Bytes::make(1, (first.to_int() - 32).to_byte())
-    let rest = if bytes.length() > 1 { (name[1:] catch { _ => "" }).to_string() } else { "" }
+    let rest = if bytes.length() > 1 {
+      (name[1:] catch { _ => "" }).to_string()
+    } else {
+      ""
+    }
     return upper_first.to_unchecked_string() + rest
   }
 
